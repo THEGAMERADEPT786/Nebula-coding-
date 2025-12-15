@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "build": {
+    "dockerfile": null,
+    "context": null,
+    "builder": "nixpacks"
+  }
+}
