@@ -1,0 +1,173 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║              NEBULA BACKEND - RAILWAY DEPLOYMENT INSTRUCTIONS               ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+
+🎯 YOUR RAILWAY CREDENTIALS
+═════════════════════════════════════════════════════════════════════════════
+
+Project Name:        Sunny-clarity
+Project ID:          aab050da-8851-421e-b2b0-944fdef07eea
+API Token:           0e3d1e1f-faee-4946-85d5-0f10760c7741
+Webhook URL:         https://api.railway.app/webhooks/deploy/effb0ae2-df8b-4783-a07b-5776b4950d4d
+
+
+🚀 DEPLOYMENT - 3 SIMPLE STEPS
+═════════════════════════════════════════════════════════════════════════════
+
+Step 1: Open Railway Dashboard
+   → Go to: https://railway.app/dashboard
+   → Login with your Railway account
+
+Step 2: Add GitHub Repository Service
+   → Click on "Sunny-clarity" project
+   → Click "New Service" button
+   → Select "GitHub Repository"
+   → Choose repository: THEGAMERADEPT786/Nebula-coding-
+   → Select branch: main
+
+Step 3: Configure and Deploy
+   → Build will auto-detect Node.js
+   → Start command: npm start (auto-detected from package.json)
+   → Environment Variables:
+      • PORT (auto-assigned by Railway)
+      • NODE_ENV=production
+   → Click "Deploy" button
+   → Wait 2-5 minutes for deployment
+
+Railway will automatically:
+   ✅ Clone your GitHub repository
+   ✅ Detect Node.js application
+   ✅ Install dependencies (npm install)
+   ✅ Build the application
+   ✅ Start the server (npm start)
+   ✅ Assign a public URL
+
+
+📍 AFTER DEPLOYMENT
+═════════════════════════════════════════════════════════════════════════════
+
+You will receive a public URL similar to:
+   https://nebula-backend-production.up.railway.app
+
+Or find it in your Railway dashboard under the service details.
+
+
+🧪 TEST YOUR DEPLOYED BACKEND
+═════════════════════════════════════════════════════════════════════════════
+
+Test 1 - Health Check (GET /)
+   Command:
+   curl https://[railway-url]/
+
+   Expected Response:
+   {"message":"NEBULA backend running"}
+
+
+Test 2 - Terminal Execution (POST /run)
+   Command:
+   curl -X POST https://[railway-url]/run \
+     -H "Content-Type: application/json" \
+     -d '{"command":"echo hello world"}'
+
+   Expected Response:
+   {"success":true,"stdout":"hello world\n","stderr":""}
+
+
+Test 3 - Error Handling
+   Command:
+   curl -X POST https://[railway-url]/run \
+     -H "Content-Type: application/json" \
+     -d '{"command":"nonexistent_command"}'
+
+   Expected Response:
+   {"success":false,"stdout":"","stderr":"command not found"}
+
+
+📋 BACKEND DETAILS
+═════════════════════════════════════════════════════════════════════════════
+
+Repository:          https://github.com/THEGAMERADEPT786/Nebula-coding-
+Branch:              main
+Entry Point:         server.js
+Framework:           Express.js 4.18.2
+Dependencies:        express, cors
+Node Version:        18.x or higher
+
+API Endpoints:
+   • GET /
+     - Purpose: Health check
+     - Returns: {"message": "NEBULA backend running"}
+
+   • POST /run
+     - Purpose: Execute terminal commands
+     - Input: {"command": "your_command"}
+     - Output: {"success": true/false, "stdout": "", "stderr": ""}
+     - Implementation: child_process.exec()
+
+
+🔐 ENVIRONMENT VARIABLES
+═════════════════════════════════════════════════════════════════════════════
+
+Railway Auto-Sets:
+   • PORT - The port to listen on (e.g., 8000, 9000, etc.)
+
+Backend Configuration:
+   • NODE_ENV=production (set in .env)
+
+
+✅ DEPLOYMENT VERIFICATION CHECKLIST
+═════════════════════════════════════════════════════════════════════════════
+
+Before Deployment:
+  ✅ Backend code created and tested locally
+  ✅ All files committed to GitHub (main branch)
+  ✅ Docker support included
+  ✅ Railway configuration ready
+  ✅ package.json with "start" script
+
+After Deployment:
+  ✅ Check Railway dashboard shows "Running" status
+  ✅ Public URL is accessible
+  ✅ GET / returns health message
+  ✅ POST /run executes commands
+  ✅ Deployment logs show no errors
+
+
+📞 TROUBLESHOOTING
+═════════════════════════════════════════════════════════════════════════════
+
+If the service shows "Offline":
+   1. Check Railway dashboard for error messages
+   2. Click on the service to view deployment logs
+   3. Verify PORT environment variable is set
+   4. Ensure npm start command is correct
+   5. Check for any runtime errors in logs
+
+If POST /run returns errors:
+   1. Verify command is valid on the system
+   2. Check command output in deployment logs
+   3. Ensure proper JSON format in request
+   4. Check stderr for any system errors
+
+
+🎯 NEXT STEPS
+═════════════════════════════════════════════════════════════════════════════
+
+1. Go to https://railway.app/dashboard
+2. Open "Sunny-clarity" project
+3. Add new service from GitHub repository
+4. Wait for deployment (2-5 minutes)
+5. Copy the public URL from Railway dashboard
+6. Test endpoints with provided curl commands
+7. Integrate with your frontend using the Railway URL
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+For more information:
+   • Railway Documentation: https://docs.railway.app
+   • Express.js Documentation: https://expressjs.com
+   • GitHub Repository: https://github.com/THEGAMERADEPT786/Nebula-coding-
+
+═════════════════════════════════════════════════════════════════════════════
